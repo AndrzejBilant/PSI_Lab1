@@ -2,7 +2,7 @@ import random
 import matplotlib.pyplot as plt
 import copy
 import math
-
+import time
 
 class Stan:  # klasa przetrzymująca stan
     miasto_teraz = -1
@@ -57,6 +57,7 @@ stan_teraz = Stan()
 miasto_startowe = random.randrange(0, ile_miast)
 stan_teraz.ustawMiasto(miasto_startowe)
 stan_teraz.dodajDoSciezki(miasto_startowe)
+czas_start=time.time()
 if algorytm == 1:
     wyniki = potomstwo(stan_teraz, tabela_maist)
     while len(wyniki[0].sciezka) != ile_miast:
@@ -75,6 +76,8 @@ if algorytm == 1:
     wyniki.sort()
     print('Najmniejszy koszt: ', wyniki[0].koszt)
     print('Najlepsza sciezka ', wyniki[0].sciezka)
+    czas_koniec = round(time.time() - czas_start, 2)
+    print('Czas obliczeń: ', czas_koniec*1000, ' milisekudnd')
     x = []
     y = []
 
@@ -96,9 +99,11 @@ elif algorytm == 2:
         temp = potomstwo(stan_teraz, tabela_maist)
         temp.sort()
         stan_teraz = temp[0]
+
     print('Najmniejszy koszt: ', stan_teraz.koszt)
     print('Najlepsza sciezka ', stan_teraz.sciezka)
-
+    czas_koniec=round(time.time()-czas_start,2)
+    print('Czas obliczeń: ', czas_koniec, ' sekudnd')
     x = []
     y = []
 
